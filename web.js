@@ -3,7 +3,7 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  var content;
+  var content="7";
   fs.readFile('./index.html', function(err, data){
     if(err) throw err;
     content = data;
