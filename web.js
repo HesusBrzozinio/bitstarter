@@ -5,7 +5,7 @@ var app = express.createServer(express.logger());
 app.get('/', function(request, response) {
   var buffLength = 64*1024;
   var buff = new Buffer(buffLength);
-  var fdr = fs.openSync('./index.html');
+  var fdr = fs.openSync("index.html", "r");
   var bytesRead = 1;
   var pos = 0;
 
