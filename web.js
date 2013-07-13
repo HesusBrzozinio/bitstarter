@@ -3,12 +3,20 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  var content=new Buffer();
-  fs.readSync('index.html', content, 0, 100, null, function(err, bytesRead, content){
-    if(err) throw err;
+  var buffLength = 64*1024;
+  var buff = new Buffer(buffLenght);
+  var fdr = fs.openSync('index.html');
+  var bytesRead = 1;
+  var pos = 0;
 
-  });
-  response.send(bontent.toString('utf8', 0, content.length));
+  while(bytesRead > 0){
+   bytesRead = fs.readSync(fdr, buff, 0, buffLength, pos);
+   pos += byteRead;
+  }
+
+  fs.closeSync(fdr);
+  
+  response.send(buff.toString('utf8', 0, buff.length));
 });
 
 var port = process.env.PORT || 5000;
